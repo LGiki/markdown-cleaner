@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
-import { BookA, Check, Clipboard, Copy, Eraser, Moon, Sun } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
+import { BookA, Check, Clipboard, Copy, Eraser, Moon, RotateCcw, Sun } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -7,6 +8,7 @@ import { Switch } from '@/components/ui/switch'
 import { Textarea } from '@/components/ui/textarea'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
 import { type StripOptions, useMarkdownStripper } from '@/hooks/useMarkdownStripper'
+import { LanguageSwitcher } from '@/components/LanguageSwitcher'
 import '@fontsource/ibm-plex-mono/600.css';
 import { Checkbox } from './components/ui/checkbox'
 
@@ -42,6 +44,7 @@ const hello = "code block"
 Inline \`code\` stays readable.`
 
 function App() {
+  const { t } = useTranslation()
   const [input, setInput] = useState(sampleMarkdown)
   const [options, setOptions] = useLocalStorage<StripOptions>('md-stripper-options', defaultOptions)
   const [theme, setTheme] = useLocalStorage<'light' | 'dark'>('md-stripper-theme', 'light')
@@ -67,41 +70,41 @@ function App() {
     setOptions({ ...options, [key]: !options[key] })
   }
 
-  const optionItems: { key: keyof StripOptions; label: string; description: string }[] = [
+  const optionItems: { key: keyof StripOptions; labelKey: string; descriptionKey: string }[] = [
     {
       key: 'removeBold',
-      label: 'Bold',
-      description: 'Strip **bold** and __bold__ markers.',
+      labelKey: 'options.bold.label',
+      descriptionKey: 'options.bold.description',
     },
     {
       key: 'removeItalics',
-      label: 'Italics',
-      description: 'Remove *italic* and _italic_ markers.',
+      labelKey: 'options.italics.label',
+      descriptionKey: 'options.italics.description',
     },
     {
       key: 'removeLinks',
-      label: 'Hyperlinks',
-      description: 'Keep link text, remove URLs.',
+      labelKey: 'options.links.label',
+      descriptionKey: 'options.links.description',
     },
     {
       key: 'removeImages',
-      label: 'Images',
-      description: 'Drop image URLs, keep alt text.',
+      labelKey: 'options.images.label',
+      descriptionKey: 'options.images.description',
     },
     {
       key: 'removeCodeBlocks',
-      label: 'Code',
-      description: 'Unwrap fenced blocks and inline code.',
+      labelKey: 'options.code.label',
+      descriptionKey: 'options.code.description',
     },
     {
       key: 'removeHeaders',
-      label: 'Headers',
-      description: 'Strip # and non-standard #header marks.',
+      labelKey: 'options.headers.label',
+      descriptionKey: 'options.headers.description',
     },
     {
       key: 'removeLists',
-      label: 'Lists',
-      description: 'Remove list bullets and numbering.',
+      labelKey: 'options.lists.label',
+      descriptionKey: 'options.lists.description',
     },
   ]
 
@@ -111,19 +114,21 @@ function App() {
         <div className="container flex flex-col sm:flex-row flex-wrap items-start sm:items-center justify-between gap-4 py-4 md:py-6">
           <div className="space-y-1 md:space-y-2">
             <h1 className="text-2xl md:text-3xl font-semibold lg:text-4xl">
-              Markdown Cleaner
+              {t('app.title')}
             </h1>
             <p className="text-sm text-muted-foreground md:text-base max-w-xl">
-              Paste raw Markdown, choose exactly what to remove, and export clean text in one click.
+              {t('app.subtitle')}
             </p>
           </div>
           <div className="flex items-center gap-2 md:gap-3 rounded-full border border-border/70 bg-card px-3 md:px-4 py-2 shadow-soft">
-            <span className="text-xs uppercase tracking-widest text-muted-foreground hidden sm:inline">Theme</span>
+            <LanguageSwitcher />
+            <div className="w-px h-4 bg-border" />
+            <span className="text-xs uppercase tracking-widest text-muted-foreground hidden sm:inline">{t('theme.label')}</span>
             <Sun className="h-4 w-4 text-muted-foreground" />
             <Switch
               checked={theme === 'dark'}
               onCheckedChange={(checked) => setTheme(checked ? 'dark' : 'light')}
-              aria-label="Toggle dark mode"
+              aria-label={t('theme.label')}
             />
             <Moon className="h-4 w-4 text-muted-foreground" />
           </div>
@@ -133,22 +138,22 @@ function App() {
       <main className="container mt-4 md:mt-8 grid gap-4 grid-cols-1 md:grid-cols-2 grid-rows-[auto_auto_auto] md:grid-rows-[1fr_auto] flex-1">
         <Card className='flex flex-col min-h-[300px] md:min-h-0'>
           <CardHeader className='space-y-2 flex-shrink-0'>
-            <CardTitle className="text-base md:text-lg">Markdown Input</CardTitle>
+            <CardTitle className="text-base md:text-lg">{t('input.title')}</CardTitle>
             <div className="flex items-center justify-between text-xs text-muted-foreground">
               <span className='flex items-center gap-2'>
                 <BookA className='w-4 h-4' />
-                {inputLength} chars
+                {t('input.chars', { count: inputLength })}
               </span>
               <div className='flex items-center gap-1 md:gap-2'>
                 {
                   inputLength !== 0 && <Button variant="ghost" size="sm" onClick={() => setInput('')} className="px-2 md:px-3">
                     <Eraser className='h-4 w-4' />
-                    <span className="hidden sm:inline">Clear</span>
+                    <span className="hidden sm:inline">{t('input.clear')}</span>
                   </Button>
                 }
                 <Button variant="secondary" size="sm" onClick={() => setInput('')} className="px-2 md:px-3">
                   <Clipboard className="h-4 w-4" />
-                  <span className="hidden sm:inline">Paste</span>
+                  <span className="hidden sm:inline">{t('input.paste')}</span>
                 </Button>
               </div>
             </div>
@@ -158,7 +163,7 @@ function App() {
               value={input}
               onChange={(event) => setInput(event.target.value)}
               className='h-full min-h-[200px] md:min-h-0'
-              placeholder="Paste Markdown here..."
+              placeholder={t('input.placeholder')}
               name='markdown-input'
             />
           </CardContent>
@@ -166,11 +171,11 @@ function App() {
 
         <Card className='flex flex-col min-h-[300px] md:min-h-0'>
           <CardHeader className='space-y-2 flex-shrink-0'>
-            <CardTitle className="text-base md:text-lg">Plain Text Output</CardTitle>
+            <CardTitle className="text-base md:text-lg">{t('output.title')}</CardTitle>
             <div className="flex items-center justify-between text-xs text-muted-foreground">
               <span className='flex items-center gap-2'>
                 <BookA className='w-4 h-4' />
-                {outputLength} chars
+                {t('output.chars', { count: outputLength })}
               </span>
               <Button
                 variant="secondary"
@@ -182,12 +187,12 @@ function App() {
                 {copied ? (
                   <span className="inline-flex items-center gap-1 md:gap-2">
                     <Check className="h-4 w-4" />
-                    <span className="hidden sm:inline">Copied</span>
+                    <span className="hidden sm:inline">{t('output.copied')}</span>
                   </span>
                 ) : (
                   <span className="inline-flex items-center gap-1 md:gap-2">
                     <Copy className="h-4 w-4" />
-                    <span className="hidden sm:inline">Copy</span>
+                    <span className="hidden sm:inline">{t('output.copy')}</span>
                   </span>
                 )}
               </Button>
@@ -206,14 +211,15 @@ function App() {
           <Card className="md:col-span-2">
             <CardHeader className='space-y-2'>
               <div className="flex items-center justify-between gap-4">
-                <CardTitle className="text-base md:text-lg">Strip Options</CardTitle>
+                <CardTitle className="text-base md:text-lg">{t('options.title')}</CardTitle>
                 <Button
                   size='sm'
                   variant="outline"
                   onClick={() => setOptions({ ...defaultOptions })}
                   className="shrink-0"
                 >
-                  Reset
+                  <RotateCcw className='w-4 h-4'/>
+                  {t('options.reset')}
                 </Button>
               </div>
             </CardHeader>
@@ -227,8 +233,8 @@ function App() {
                     className="mt-0.5 shrink-0"
                   />
                   <label htmlFor={`option-${item.key}`} className="space-y-1 min-w-0 cursor-pointer">
-                    <span className="block font-medium text-foreground">{item.label}</span>
-                    <span className="block text-xs text-muted-foreground leading-relaxed">{item.description}</span>
+                    <span className="block font-medium text-foreground">{t(item.labelKey)}</span>
+                    <span className="block text-xs text-muted-foreground leading-relaxed">{t(item.descriptionKey)}</span>
                   </label>
                 </div>
               ))}

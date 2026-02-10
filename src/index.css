@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 32 45% 97%;
+  --foreground: 220 15% 12%;
+  --card: 33 35% 98%;
+  --card-foreground: 220 15% 12%;
+  --primary: 220 60% 18%;
+  --primary-foreground: 34 40% 96%;
+  --secondary: 34 45% 91%;
+  --secondary-foreground: 222 20% 20%;
+  --muted: 32 20% 92%;
+  --muted-foreground: 215 14% 38%;
+  --accent: 18 70% 58%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 72% 54%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 220 16% 84%;
+  --input: 220 16% 84%;
+  --ring: 220 60% 35%;
+  --radius: 16px;
+}
+
+.dark {
+  --background: 222 24% 10%;
+  --foreground: 0 0% 98%;
+  --card: 222 22% 12%;
+  --card-foreground: 0 0% 98%;
+  --primary: 28 88% 68%;
+  --primary-foreground: 224 25% 10%;
+  --secondary: 220 18% 20%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 220 16% 22%;
+  --muted-foreground: 215 14% 65%;
+  --accent: 190 65% 55%;
+  --accent-foreground: 222 24% 12%;
+  --destructive: 0 70% 54%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 220 16% 28%;
+  --input: 220 16% 28%;
+  --ring: 28 88% 68%;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, hsl(34 60% 92%), transparent 55%),
+    linear-gradient(140deg, hsl(32 40% 96%), hsl(34 35% 92%));
+  color: hsl(var(--foreground));
+  font-family: "Space Grotesk", system-ui, sans-serif;
+}
+
+.dark body {
+  background: radial-gradient(circle at top, hsl(220 30% 18%), transparent 55%),
+    linear-gradient(160deg, hsl(220 25% 12%), hsl(220 18% 10%));
+}
+
+textarea {
+  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+}

@@ -108,17 +108,17 @@ function App() {
   return (
     <div className="min-h-screen pb-16 text-foreground flex flex-col">
       <header className="border-b border-border/70 bg-background/80 backdrop-blur flex-shrink-0">
-        <div className="container flex flex-wrap items-center justify-between gap-4 py-6">
-          <div className="space-y-2">
-            <h1 className="text-3xl font-semibold sm:text-4xl">
+        <div className="container flex flex-col sm:flex-row flex-wrap items-start sm:items-center justify-between gap-4 py-4 md:py-6">
+          <div className="space-y-1 md:space-y-2">
+            <h1 className="text-2xl md:text-3xl font-semibold lg:text-4xl">
               Markdown Cleaner
             </h1>
-            <p className="text-sm text-muted-foreground sm:text-base">
+            <p className="text-sm text-muted-foreground md:text-base max-w-xl">
               Paste raw Markdown, choose exactly what to remove, and export clean text in one click.
             </p>
           </div>
-          <div className="flex items-center gap-3 rounded-full border border-border/70 bg-card px-4 py-2 shadow-soft">
-            <span className="text-xs uppercase tracking-widest text-muted-foreground">Theme</span>
+          <div className="flex items-center gap-2 md:gap-3 rounded-full border border-border/70 bg-card px-3 md:px-4 py-2 shadow-soft">
+            <span className="text-xs uppercase tracking-widest text-muted-foreground hidden sm:inline">Theme</span>
             <Sun className="h-4 w-4 text-muted-foreground" />
             <Switch
               checked={theme === 'dark'}
@@ -130,25 +130,25 @@ function App() {
         </div>
       </header>
 
-      <main className="container mt-8 grid gap-4 grid-cols-2 grid-rows-[1fr_auto] flex-1 h-0">
-        <Card className='flex flex-col'>
+      <main className="container mt-4 md:mt-8 grid gap-4 grid-cols-1 md:grid-cols-2 grid-rows-[auto_auto_auto] md:grid-rows-[1fr_auto] flex-1">
+        <Card className='flex flex-col min-h-[300px] md:min-h-0'>
           <CardHeader className='space-y-2 flex-shrink-0'>
-            <CardTitle>Markdown Input</CardTitle>
+            <CardTitle className="text-base md:text-lg">Markdown Input</CardTitle>
             <div className="flex items-center justify-between text-xs text-muted-foreground">
               <span className='flex items-center gap-2'>
                 <BookA className='w-4 h-4' />
                 {inputLength} chars
               </span>
-              <div className='flex items-center gap-2'>
+              <div className='flex items-center gap-1 md:gap-2'>
                 {
-                  inputLength !== 0 && <Button variant="ghost" size="sm" onClick={() => setInput('')}>
+                  inputLength !== 0 && <Button variant="ghost" size="sm" onClick={() => setInput('')} className="px-2 md:px-3">
                     <Eraser className='h-4 w-4' />
-                    Clear
+                    <span className="hidden sm:inline">Clear</span>
                   </Button>
                 }
-                <Button variant="secondary" size="sm" onClick={() => setInput('')}>
+                <Button variant="secondary" size="sm" onClick={() => setInput('')} className="px-2 md:px-3">
                   <Clipboard className="h-4 w-4" />
-                  Paste
+                  <span className="hidden sm:inline">Paste</span>
                 </Button>
               </div>
             </div>
@@ -157,16 +157,16 @@ function App() {
             <Textarea
               value={input}
               onChange={(event) => setInput(event.target.value)}
-              className='h-full'
+              className='h-full min-h-[200px] md:min-h-0'
               placeholder="Paste Markdown here..."
               name='markdown-input'
             />
           </CardContent>
         </Card>
 
-        <Card className='flex flex-col'>
+        <Card className='flex flex-col min-h-[300px] md:min-h-0'>
           <CardHeader className='space-y-2 flex-shrink-0'>
-            <CardTitle>Plain Text Output</CardTitle>
+            <CardTitle className="text-base md:text-lg">Plain Text Output</CardTitle>
             <div className="flex items-center justify-between text-xs text-muted-foreground">
               <span className='flex items-center gap-2'>
                 <BookA className='w-4 h-4' />
@@ -177,14 +177,17 @@ function App() {
                 size="sm"
                 onClick={handleCopy}
                 disabled={!output}
+                className="px-2 md:px-3"
               >
                 {copied ? (
-                  <span className="inline-flex items-center gap-2">
-                    <Check className="h-4 w-4" /> Copied
+                  <span className="inline-flex items-center gap-1 md:gap-2">
+                    <Check className="h-4 w-4" />
+                    <span className="hidden sm:inline">Copied</span>
                   </span>
                 ) : (
-                  <span className="inline-flex items-center gap-2">
-                    <Copy className="h-4 w-4" /> Copy
+                  <span className="inline-flex items-center gap-1 md:gap-2">
+                    <Copy className="h-4 w-4" />
+                    <span className="hidden sm:inline">Copy</span>
                   </span>
                 )}
               </Button>
@@ -194,37 +197,40 @@ function App() {
             <Textarea
               value={output}
               readOnly
-              className='h-full'
+              className='h-full min-h-[200px] md:min-h-0'
               name='plain-text'
             />
           </CardContent>
         </Card>
 
-          <Card className="col-span-2">
+          <Card className="md:col-span-2">
             <CardHeader className='space-y-2'>
-              <CardTitle>Strip Options</CardTitle>
-              <Button
-                size='sm'
-                variant="outline"
-                className="w-full"
-                onClick={() => setOptions({ ...defaultOptions })}
-              >
-                Reset Options
-              </Button>
+              <div className="flex items-center justify-between gap-4">
+                <CardTitle className="text-base md:text-lg">Strip Options</CardTitle>
+                <Button
+                  size='sm'
+                  variant="outline"
+                  onClick={() => setOptions({ ...defaultOptions })}
+                  className="shrink-0"
+                >
+                  Reset
+                </Button>
+              </div>
             </CardHeader>
-            <CardContent className="grid grid-cols-3 gap-4">
+            <CardContent className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
               {optionItems.map((item) => (
-                <label key={item.key} className="flex items-start gap-3 text-sm">
+                <div key={item.key} className="flex items-start gap-3 text-sm p-2 -m-2 rounded-lg hover:bg-muted/50 transition-colors">
                   <Checkbox
+                    id={`option-${item.key}`}
                     checked={options[item.key]}
                     onCheckedChange={() => handleOptionChange(item.key)}
-                    aria-label={item.label}
+                    className="mt-0.5 shrink-0"
                   />
-                  <span className="space-y-1">
+                  <label htmlFor={`option-${item.key}`} className="space-y-1 min-w-0 cursor-pointer">
                     <span className="block font-medium text-foreground">{item.label}</span>
-                    <span className="block text-xs text-muted-foreground">{item.description}</span>
-                  </span>
-                </label>
+                    <span className="block text-xs text-muted-foreground leading-relaxed">{item.description}</span>
+                  </label>
+                </div>
               ))}
             </CardContent>
           </Card>

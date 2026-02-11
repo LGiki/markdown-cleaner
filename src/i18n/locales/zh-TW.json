@@ -3,9 +3,6 @@
     "title": "Markdown 清理器",
     "subtitle": "貼上原始 Markdown，選擇要移除的內容，一鍵匯出純文字。"
   },
-  "theme": {
-    "label": "主題"
-  },
   "input": {
     "title": "Markdown 輸入",
     "chars": "{{count}} 字元",

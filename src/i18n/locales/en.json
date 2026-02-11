@@ -3,9 +3,6 @@
     "title": "Markdown Cleaner",
     "subtitle": "Paste raw Markdown, choose exactly what to remove, and export clean text in one click."
   },
-  "theme": {
-    "label": "Theme"
-  },
   "input": {
     "title": "Markdown Input",
     "chars": "{{count}} chars",

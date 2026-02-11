@@ -13,10 +13,15 @@ export default defineConfig({
       manifest: {
         name: 'Markdown Cleaner',
         short_name: 'MD Cleaner',
-        description: 'Strip Markdown formatting with real-time, offline-ready processing.',
+        description: 'Free online tool to strip Markdown formatting from text. Remove bold, italics, links, code blocks, headers, and lists instantly with real-time processing.',
+        categories: ['productivity', 'utilities'],
         theme_color: '#1b2738',
         background_color: '#f9f6f1',
         display: 'standalone',
+        start_url: '/',
+        scope: '/',
+        lang: 'en',
+        dir: 'ltr',
         icons: [
           {
             src: '/icon.svg',

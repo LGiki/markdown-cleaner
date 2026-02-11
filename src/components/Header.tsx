@@ -23,7 +23,7 @@ export function Header({ theme, onThemeChange }: HeaderProps) {
             {t('app.subtitle')}
           </p>
         </div>
-        <div className="flex items-center gap-2 md:gap-3 rounded-full border border-border/70 bg-card px-3 md:px-4 py-2 shadow-soft">
+        <div className="flex items-center gap-2 md:gap-3 rounded-full border border-border/70 bg-card px-3 md:px-4 py-2 shadow-soft dark:shadow-none">
           <LanguageSwitcher />
           <div className="w-px h-4 bg-border" />
           <Sun className="h-4 w-4 text-muted-foreground" />

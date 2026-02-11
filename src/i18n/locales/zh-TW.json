@@ -19,7 +19,7 @@
   },
   "options": {
     "title": "清理選項",
-    "reset": "重設",
+    "reset": "全選",
     "bold": {
       "label": "粗體",
       "description": "移除 **粗體** 和 __粗體__ 標記"

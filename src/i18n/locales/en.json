@@ -19,7 +19,7 @@
   },
   "options": {
     "title": "Strip Options",
-    "reset": "Reset",
+    "reset": "Select All",
     "bold": {
       "label": "Bold",
       "description": "Strip **bold** and __bold__ markers."

@@ -40,7 +40,7 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen pb-16 text-foreground flex flex-col">
+    <div className="min-h-screen pb-4 md:pb-8 text-foreground flex flex-col">
       <Header theme={theme} onThemeChange={setTheme} />
 
       <main className="container mt-4 md:mt-8 grid gap-4 grid-cols-1 md:grid-cols-2 grid-rows-[auto_auto_auto] md:grid-rows-[1fr_auto] flex-1">

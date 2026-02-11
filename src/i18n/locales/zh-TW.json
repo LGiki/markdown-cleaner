@@ -17,38 +17,39 @@
     "title": "純文字輸出",
     "chars": "{{count}} 字元",
     "copy": "複製",
-    "copied": "已複製"
+    "copied": "已複製",
+    "placeholder": "清理後的文字將顯示在這裡..."
   },
   "options": {
     "title": "清理選項",
     "reset": "重設",
     "bold": {
       "label": "粗體",
-      "description": "移除 **粗體** 和 __粗體__ 標記。"
+      "description": "移除 **粗體** 和 __粗體__ 標記"
     },
     "italics": {
       "label": "斜體",
-      "description": "移除 *斜體* 和 _斜體_ 標記。"
+      "description": "移除 *斜體* 和 _斜體_ 標記"
     },
     "links": {
       "label": "超連結",
-      "description": "保留連結文字，移除 URL。"
+      "description": "保留連結文字，移除 URL"
     },
     "images": {
       "label": "圖片",
-      "description": "移除圖片 URL，保留替代文字。"
+      "description": "移除圖片 URL，保留替代文字"
     },
     "code": {
       "label": "程式碼",
-      "description": "展開程式碼區塊和行內程式碼。"
+      "description": "展開程式碼區塊和行內程式碼"
     },
     "headers": {
       "label": "標題",
-      "description": "移除 # 和非標準的 #標題 標記。"
+      "description": "移除 # 和非標準的 #標題 標記"
     },
     "lists": {
       "label": "清單",
-      "description": "移除清單符號和編號。"
+      "description": "移除清單符號和編號"
     }
   },
   "language": {

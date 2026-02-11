@@ -17,7 +17,8 @@
     "title": "Plain Text Output",
     "chars": "{{count}} chars",
     "copy": "Copy",
-    "copied": "Copied"
+    "copied": "Copied",
+    "placeholder": "Cleaned text will appear here..."
   },
   "options": {
     "title": "Strip Options",

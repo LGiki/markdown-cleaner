@@ -26,12 +26,10 @@ export function Header({ theme, onThemeChange }: HeaderProps) {
         <div className="flex items-center gap-2 md:gap-3 rounded-full border border-border/70 bg-card px-3 md:px-4 py-2 shadow-soft">
           <LanguageSwitcher />
           <div className="w-px h-4 bg-border" />
-          <span className="text-xs uppercase tracking-widest text-muted-foreground hidden sm:inline">{t('theme.label')}</span>
           <Sun className="h-4 w-4 text-muted-foreground" />
           <Switch
             checked={theme === 'dark'}
             onCheckedChange={(checked) => onThemeChange(checked ? 'dark' : 'light')}
-            aria-label={t('theme.label')}
           />
           <Moon className="h-4 w-4 text-muted-foreground" />
         </div>

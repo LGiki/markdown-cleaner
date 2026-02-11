@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { RotateCcw } from 'lucide-react'
+import { CheckCheck } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -68,7 +68,7 @@ export function OptionsPanel({ options, onChange, onReset }: OptionsPanelProps) 
             onClick={onReset}
             className="shrink-0"
           >
-            <RotateCcw className='w-4 h-4' />
+            <CheckCheck className='w-4 h-4' />
             {t('options.reset')}
           </Button>
         </div>

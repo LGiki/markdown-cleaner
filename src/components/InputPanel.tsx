@@ -1,3 +1,4 @@
+import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { BookA, Clipboard, Eraser } from 'lucide-react'
 
@@ -13,6 +14,15 @@ interface InputPanelProps {
 
 export function InputPanel({ value, onChange, charCount }: InputPanelProps) {
   const { t } = useTranslation()
+
+  const handlePaste = useCallback(async () => {
+    try {
+      const text = await navigator.clipboard.readText()
+      onChange(text)
+    } catch (error) {
+      console.error('Failed to read clipboard:', error)
+    }
+  }, [onChange])
 
   return (
     <Card className='flex flex-col min-h-[420px]'>
@@ -30,7 +40,7 @@ export function InputPanel({ value, onChange, charCount }: InputPanelProps) {
                 <span className="hidden sm:inline">{t('input.clear')}</span>
               </Button>
             )}
-            <Button variant="secondary" size="sm" onClick={() => onChange('')} className="px-2 md:px-3">
+            <Button variant="secondary" size="sm" onClick={handlePaste} className="px-2 md:px-3">
               <Clipboard className="h-4 w-4" />
               <span className="hidden sm:inline">{t('input.paste')}</span>
             </Button>

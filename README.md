@@ -11,6 +11,10 @@ A high-performance, offline-ready PWA that strips Markdown formatting from text 
 - PWA with offline access and install support.
 - Fully responsive for mobile and desktop.
 
+## Screenshot
+
+![](https://github.com/user-attachments/assets/9f474d6e-f6f6-4394-a7c4-8f2680b32284)
+
 ## Tech Stack
 - React + Vite (TypeScript)
 - Tailwind CSS + Shadcn UI (Radix)

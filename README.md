@@ -1,6 +1,6 @@
 # Markdown Cleaner
 
-A high-performance, offline-ready PWA that strips Markdown formatting from text with real-time, split-column processing. Built with React + Vite, Tailwind CSS, Shadcn UI, and Bun.
+A high-performance, offline-ready PWA that strips Markdown formatting from text. Built with React + Vite, Tailwind CSS, Shadcn UI, and Bun.
 
 ## Features
 - Split-column layout: raw Markdown input and clean text output.
